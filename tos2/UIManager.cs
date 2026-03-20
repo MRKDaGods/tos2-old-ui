@@ -7,31 +7,22 @@ namespace MRK
 {
     public class UIManager : MonoBehaviour
     {
-        private readonly Dictionary<string, BaseSceneHandler> _sceneHandlers;
+        private Dictionary<string, BaseSceneHandler> _sceneHandlers;
+        private Textures _textures;
 
-        public Textures Textures { get; }
+        public Textures Textures => _textures;
 
         public static UIManager Instance { get; private set; }
 
-        public UIManager()
-        {
-            _sceneHandlers = new Dictionary<string, BaseSceneHandler>();
-            Textures = new Textures();
-        }
 
         private void Awake()
         {
             Instance = this;
+
+            _sceneHandlers = new Dictionary<string, BaseSceneHandler>();
+            _textures = new Textures();
+
             Logger.Log("UIManager Awake");
-
-            // Register scene handlers
-            _sceneHandlers["HomeScene"] = gameObject.AddComponent<HomeSceneHandler>();
-
-            // Disable all handlers initially
-            foreach (var handler in _sceneHandlers.Values)
-            {
-                handler.enabled = false;
-            }
         }
 
         private void OnEnable()
@@ -48,10 +39,16 @@ namespace MRK
         {
             Logger.Log("UIManager started");
 
-            // Load textures for all handlers
+            // Register scene handlers
+            _sceneHandlers["HomeScene"] = gameObject.AddComponent<HomeSceneHandler>();
+
+            Logger.Log($"Registered scene handlers: {string.Join(", ", _sceneHandlers.Keys)}");
+
+            // Disable all handlers initially
             foreach (var handler in _sceneHandlers.Values)
             {
                 handler.OnLoadTextures();
+                handler.enabled = false;
             }
 
             // Initially activate handler for current scene
