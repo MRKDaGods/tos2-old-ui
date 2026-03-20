@@ -1,0 +1,12 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path="bin2c.ps1" />
+  </Folder>
+  <Project Path="loader/loader.vcxproj" Id="b4222f34-8fa0-412d-84bb-405f7d9ca29e" />
+  <Project Path="tos2/tos2.csproj" />
+</Solution>
