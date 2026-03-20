@@ -3,12 +3,106 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <RootNamespace>MRK</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GIModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.GIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PropertiesModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.PropertiesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>D:\Games\SteamLibrary\steamapps\common\Town of Salem 2\TownOfSalem2_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="TextureResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TextureResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="TextureResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextureResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
