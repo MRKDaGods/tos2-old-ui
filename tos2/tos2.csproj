@@ -91,7 +91,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="TextureResources.Designer.cs">
+    <Compile Update="Textures\TextureResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>TextureResources.resx</DependentUpon>
@@ -99,7 +99,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="TextureResources.resx">
+    <EmbeddedResource Update="Textures\TextureResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TextureResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>

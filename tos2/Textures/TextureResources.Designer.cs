@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MRK {
+namespace MRK.Textures {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MRK {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MRK.TextureResources", typeof(TextureResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MRK.Textures.TextureResources", typeof(TextureResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -76,6 +76,36 @@ namespace MRK {
         internal static byte[] HomeLeftSepSymbol {
             get {
                 object obj = ResourceManager.GetObject("HomeLeftSepSymbol", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] IconAtlas {
+            get {
+                object obj = ResourceManager.GetObject("IconAtlas", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] IconButtonSpriteAtlas {
+            get {
+                object obj = ResourceManager.GetObject("IconButtonSpriteAtlas", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MainMenuButtonSpriteAtlas {
+            get {
+                object obj = ResourceManager.GetObject("MainMenuButtonSpriteAtlas", resourceCulture);
                 return ((byte[])(obj));
             }
         }

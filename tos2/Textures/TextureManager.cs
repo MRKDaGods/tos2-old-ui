@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace MRK
+namespace MRK.Textures
 {
-    public class Textures
+    public class TextureManager
     {
         private readonly Dictionary<string, Texture2D> _textureCache;
 
-        public Textures()
+        public TextureManager()
         {
             _textureCache = new Dictionary<string, Texture2D>();
         }
@@ -64,6 +64,6 @@ namespace MRK
             return tex;
         }
 
-        public Texture2D? this[string name] { get { return _textureCache[name]; } }
+        public Texture2D? this[string name] => _textureCache.TryGetValue(name, out var tex) ? tex : null;
     }
 }

@@ -1,14 +1,46 @@
-﻿using UnityEngine;
+﻿using MRK.Textures;
+using System;
+using System.Collections;
+using UnityEngine;
 
 namespace MRK.SceneHandlers
 {
+    public class WaitUntilWithCooldown : CustomYieldInstruction
+    {
+        private readonly Func<bool> _predicate;
+        private readonly float _cooldown;
+        private float _nextCheckTime;
+
+        public WaitUntilWithCooldown(Func<bool> predicate, float cooldown = 0.1f)
+        {
+            _predicate = predicate;
+            _cooldown = cooldown;
+            _nextCheckTime = Time.time;
+        }
+
+        public override bool keepWaiting
+        {
+            get
+            {
+                if (Time.time < _nextCheckTime)
+                    return true;
+
+                _nextCheckTime = Time.time + _cooldown;
+                return !_predicate();
+            }
+        }
+    }
+
     public class BaseSceneHandler : MonoBehaviour
     {
-        protected Textures Textures => UIManager.Instance.Textures;
+        protected UIManager UIManager => UIManager.Instance;
+        protected TextureManager TextureManager => UIManager.TextureManager;
+        protected UIRenderer Renderer => UIManager.Renderer;
 
-        public virtual void OnSceneActivated()
+        public virtual IEnumerator OnSceneActivated()
         {
             Logger.Log($"{GetType().Name} activated");
+            yield break;
         }
 
         public virtual void OnSceneDeactivated()

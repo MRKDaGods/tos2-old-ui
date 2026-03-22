@@ -1,4 +1,5 @@
 ﻿using MRK.SceneHandlers;
+using MRK.Textures;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,9 +9,13 @@ namespace MRK
     public class UIManager : MonoBehaviour
     {
         private Dictionary<string, BaseSceneHandler> _sceneHandlers;
-        private Textures _textures;
+        private TextureManager _textureManager;
+        private UIRenderer _renderer;
 
-        public Textures Textures => _textures;
+        public TextureManager TextureManager => _textureManager;
+        public UIRenderer Renderer => _renderer;
+
+        public Font FontRuncible { get; private set; }
 
         public static UIManager Instance { get; private set; }
 
@@ -20,7 +25,8 @@ namespace MRK
             Instance = this;
 
             _sceneHandlers = new Dictionary<string, BaseSceneHandler>();
-            _textures = new Textures();
+            _textureManager = new TextureManager();
+            _renderer = new UIRenderer();
 
             Logger.Log("UIManager Awake");
         }
@@ -38,6 +44,15 @@ namespace MRK
         private void Start()
         {
             Logger.Log("UIManager started");
+
+            RegisterFonts();
+
+            // Init renderer
+            if (!_renderer.Initialize())
+            {
+                Logger.Log("ERROR Failed to initialize UIRenderer");
+                return;
+            }
 
             // Register scene handlers
             _sceneHandlers["HomeScene"] = gameObject.AddComponent<HomeSceneHandler>();
@@ -96,5 +111,12 @@ namespace MRK
                 handler.OnSceneActivated();
             }
         }
+
+        private void RegisterFonts()
+        {
+            // For now users must install Runcible manually..
+            FontRuncible = Font.CreateDynamicFontFromOSFont("Runcible", 14);
+        }
+
     }
 }
