@@ -14,32 +14,38 @@ namespace MRK.Textures
             _textures = new Dictionary<string, Texture2D>();
         }
 
-        public Texture2D AddTexture(string name, Rect uvRect)
+        public Texture2D AddTextureUV(string name, Rect uvRect)
         {
             // Fix inverted uvrect
             uvRect.y = 1f - uvRect.y - uvRect.height;
 
-            var tex = new Texture2D((int)(uvRect.width * _atlasTexture.width), (int)(uvRect.height * _atlasTexture.height));
-            var pixels = _atlasTexture.GetPixels((int)(uvRect.x * _atlasTexture.width), (int)(uvRect.y * _atlasTexture.height), tex.width, tex.height);
-            tex.SetPixels(pixels);
+            int x = Mathf.RoundToInt(uvRect.x * _atlasTexture.width);
+            int y = Mathf.RoundToInt(uvRect.y * _atlasTexture.height);
+            int w = Mathf.RoundToInt(uvRect.width * _atlasTexture.width);
+            int h = Mathf.RoundToInt(uvRect.height * _atlasTexture.height);
+
+            var tex = new Texture2D(w, h);
+            tex.SetPixels(_atlasTexture.GetPixels(x, y, w, h));
             tex.Apply();
 
             _textures[name] = tex;
-
             return tex;
         }
 
         public Texture2D AddTextureXY(string name, RectInt xyRect)
         {
-            var uvRect = new Rect(
-                (float)xyRect.x / _atlasTexture.width,
-                (float)xyRect.y / _atlasTexture.height,
-                (float)xyRect.width / _atlasTexture.width,
-                (float)xyRect.height / _atlasTexture.height
-            );
-            return AddTexture(name, uvRect);
+            // Work directly in pixel coordinates
+            int flippedY = _atlasTexture.height - xyRect.y - xyRect.height;
+
+            var tex = new Texture2D(xyRect.width, xyRect.height);
+            tex.SetPixels(_atlasTexture.GetPixels(xyRect.x, flippedY, xyRect.width, xyRect.height));
+            tex.Apply();
+
+            _textures[name] = tex;
+            return tex;
         }
 
-        public Texture2D? this[string name] => _textures.TryGetValue(name, out var tex) ? tex : null;
+        public Texture2D? this[string name] =>
+            _textures.TryGetValue(name, out var tex) ? tex : null;
     }
 }

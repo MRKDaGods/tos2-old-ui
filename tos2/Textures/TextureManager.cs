@@ -16,8 +16,7 @@ namespace MRK.Textures
 
         public Texture2D? LoadFromFile(string name, string path)
         {
-            Texture2D? tex;
-            if (_textureCache.TryGetValue(name, out tex))
+            if (_textureCache.TryGetValue(name, out var tex))
             {
                 Logger.Log($"Texture '{name}' already loaded");
                 return tex;
@@ -48,6 +47,12 @@ namespace MRK.Textures
 
         public Texture2D? FromResource(string name)
         {
+            if (_textureCache.TryGetValue(name, out var tex))
+            {
+                Logger.Log($"Texture '{name}' already loaded from embedded resources");
+                return tex;
+            }
+
             var bytes = (byte[])TextureResources.ResourceManager.GetObject(name);
             if (bytes == null)
             {
@@ -55,7 +60,7 @@ namespace MRK.Textures
                 return null;
             }
 
-            var tex = new Texture2D(2, 2);
+            tex = new Texture2D(2, 2);
             tex.LoadImage(bytes);
 
             _textureCache[name] = tex;
@@ -64,6 +69,7 @@ namespace MRK.Textures
             return tex;
         }
 
-        public Texture2D? this[string name] => _textureCache.TryGetValue(name, out var tex) ? tex : null;
+        public Texture2D? this[string name] =>
+            _textureCache.TryGetValue(name, out var tex) ? tex : null;
     }
 }

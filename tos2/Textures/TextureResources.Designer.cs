@@ -63,6 +63,16 @@ namespace MRK.Textures {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] HomeAccountDisplaySymbol {
+            get {
+                object obj = ResourceManager.GetObject("HomeAccountDisplaySymbol", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] HomeBackground {
             get {
                 object obj = ResourceManager.GetObject("HomeBackground", resourceCulture);
@@ -76,6 +86,16 @@ namespace MRK.Textures {
         internal static byte[] HomeLeftSepSymbol {
             get {
                 object obj = ResourceManager.GetObject("HomeLeftSepSymbol", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] HomeSepSymbol {
+            get {
+                object obj = ResourceManager.GetObject("HomeSepSymbol", resourceCulture);
                 return ((byte[])(obj));
             }
         }

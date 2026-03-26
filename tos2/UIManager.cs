@@ -1,6 +1,9 @@
-﻿using MRK.SceneHandlers;
+﻿using System.Collections.Generic;
+using System.Linq;
+using MRK.Data;
+using MRK.Scenes;
+using MRK.Scenes.Home;
 using MRK.Textures;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,25 +11,28 @@ namespace MRK
 {
     public class UIManager : MonoBehaviour
     {
-        private Dictionary<string, BaseSceneHandler> _sceneHandlers;
+        private Dictionary<string, BaseScene> _scenes;
         private TextureManager _textureManager;
-        private UIRenderer _renderer;
+        private UIRootRenderer _renderer;
 
+        public List<BaseScene> Scenes => _scenes.Values.ToList();
         public TextureManager TextureManager => _textureManager;
-        public UIRenderer Renderer => _renderer;
+        public UIRootRenderer Renderer => _renderer;
 
         public Font FontRuncible { get; private set; }
 
-        public static UIManager Instance { get; private set; }
+        public IDataProvider DataProvider { get; set; }
+        public bool IsRunningShim => DataProvider is ShimDataProvider;
 
+        public static UIManager Instance { get; private set; }
 
         private void Awake()
         {
             Instance = this;
 
-            _sceneHandlers = new Dictionary<string, BaseSceneHandler>();
+            _scenes = new Dictionary<string, BaseScene>();
             _textureManager = new TextureManager();
-            _renderer = new UIRenderer();
+            _renderer = new UIRootRenderer();
 
             Logger.Log("UIManager Awake");
         }
@@ -50,20 +56,22 @@ namespace MRK
             // Init renderer
             if (!_renderer.Initialize())
             {
-                Logger.Log("ERROR Failed to initialize UIRenderer");
+                Logger.LogError("Failed to initialize UIRenderer");
                 return;
             }
 
             // Register scene handlers
-            _sceneHandlers["HomeScene"] = gameObject.AddComponent<HomeSceneHandler>();
+            _scenes["HomeScene"] = new HomeScene();
 
-            Logger.Log($"Registered scene handlers: {string.Join(", ", _sceneHandlers.Keys)}");
+            Logger.Log($"Registered scene handlers: {string.Join(", ", _scenes.Keys)}");
+
+            gameObject.AddComponent<DebugWindow>();
 
             // Disable all handlers initially
-            foreach (var handler in _sceneHandlers.Values)
+            foreach (var handler in _scenes.Values)
             {
                 handler.OnLoadTextures();
-                handler.enabled = false;
+                handler.IsActive = false;
             }
 
             // Initially activate handler for current scene
@@ -75,7 +83,22 @@ namespace MRK
 
         private void OnGUI()
         {
-            GUI.Label(new Rect(0f, 0f, 200f, 20f), "<b>MRK UI Manager</b>");
+            // Reset
+            GUI.color = Color.white;
+            GUI.contentColor = Color.white;
+            GUI.backgroundColor = Color.white;
+
+            // Render current scene UI
+            var activeHandler = _scenes.Values.FirstOrDefault(h => h.IsActive);
+            activeHandler?.OnGUI();
+
+            GUI.Label(new Rect(0f, 0f, 200f, 20f), "<size=10><b>MRK UI Manager</b></size>");
+        }
+
+        private void OnDestroy()
+        {
+            Logger.Log("UIManager destroyed");
+            Logger.Shutdown();
         }
 
         private void OnActiveSceneChanged(Scene oldScene, Scene newScene)
@@ -83,14 +106,14 @@ namespace MRK
             Logger.Log($"Scene changed: {oldScene.name} -> {newScene.name}");
 
             // Disable all handlers first
-            foreach (var handler in _sceneHandlers.Values)
+            foreach (var handler in _scenes.Values)
             {
-                if (handler.enabled)
+                if (handler.IsActive)
                 {
                     handler.OnSceneDeactivated();
                 }
 
-                handler.enabled = false;
+                handler.IsActive = false;
             }
 
             // Enable new handler
@@ -104,11 +127,11 @@ namespace MRK
                 return;
             }
 
-            if (_sceneHandlers.TryGetValue(sceneName, out var handler))
+            if (_scenes.TryGetValue(sceneName, out var handler))
             {
                 Logger.Log($"Enabling handler for scene: {sceneName}");
-                handler.enabled = true;
-                handler.OnSceneActivated();
+                handler.IsActive = true;
+                StartCoroutine(handler.OnSceneActivated());
             }
         }
 
@@ -117,6 +140,5 @@ namespace MRK
             // For now users must install Runcible manually..
             FontRuncible = Font.CreateDynamicFontFromOSFont("Runcible", 14);
         }
-
     }
 }

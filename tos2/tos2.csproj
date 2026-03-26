@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
@@ -105,4 +104,11 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="E:\dev\unity\Tos2Shim\Assets\Plugins" />
+    <Message
+      Text="Build complete, copied to E:\dev\unity\Tos2Shim\Assets\Plugins"
+      Importance="high"
+    />
+  </Target>
 </Project>

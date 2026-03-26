@@ -21,9 +21,8 @@ namespace MRK.Textures
 
     public class MainMenuButtonTextures : BaseButtonTextures
     {
-        public MainMenuButtonTextures(TextureAtlas atlas) : base(atlas)
-        {
-        }
+        public MainMenuButtonTextures(TextureAtlas atlas)
+            : base(atlas) { }
 
         protected override void LoadTextures()
         {
@@ -35,23 +34,21 @@ namespace MRK.Textures
 
     public class IconButtonTextures : BaseButtonTextures
     {
-        public IconButtonTextures(TextureAtlas atlas) : base(atlas)
-        {
-        }
+        public IconButtonTextures(TextureAtlas atlas)
+            : base(atlas) { }
 
         protected override void LoadTextures()
         {
-            Idle = _atlas.AddTextureXY("IconButtonIdle", new RectInt(51, 0, 50, 50));
-            Hover = _atlas.AddTextureXY("IconButtonHover", new RectInt(102, 0, 50, 50));
+            Idle = _atlas.AddTextureXY("IconButtonIdle", new RectInt(50, 0, 50, 50));
+            Hover = _atlas.AddTextureXY("IconButtonHover", new RectInt(100, 0, 50, 50));
             Down = _atlas.AddTextureXY("IconButtonDown", new RectInt(0, 0, 50, 50));
         }
     }
 
     public class SideIconButtonTextures : BaseButtonTextures
     {
-        public SideIconButtonTextures(TextureAtlas atlas) : base(atlas)
-        {
-        }
+        public SideIconButtonTextures(TextureAtlas atlas)
+            : base(atlas) { }
 
         protected override void LoadTextures()
         {

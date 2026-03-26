@@ -16,14 +16,20 @@ namespace MRK
             if (_hasConsole)
             {
                 // Redirect to new console handle
-                var writer = new StreamWriter(Console.OpenStandardOutput())
-                {
-                    AutoFlush = true
-                };
+                var writer = new StreamWriter(Console.OpenStandardOutput()) { AutoFlush = true };
                 Console.SetOut(writer);
             }
 
             Log($"Initialized logger (hasConsole={_hasConsole})");
+        }
+
+        public static void Shutdown()
+        {
+            if (_hasConsole)
+            {
+                Natives.FreeConsole();
+                _hasConsole = false;
+            }
         }
 
         public static void Log(string fmt, params object[] args)
@@ -32,6 +38,11 @@ namespace MRK
             var message = $"[MRK] [{timestamp}] {string.Format(fmt, args)}";
             Console.WriteLine(message);
             Debug.Log(message);
+        }
+
+        public static void LogError(string fmt, params object[] args)
+        {
+            Log($"ERROR {string.Format(fmt, args)}");
         }
 
         [DoesNotReturn]
