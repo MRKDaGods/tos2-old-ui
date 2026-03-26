@@ -139,4 +139,7 @@
   <data name="HomeAccountDisplaySymbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\HomeAccountDisplaySymbol.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="WidgetAtlas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\WidgetAtlas.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

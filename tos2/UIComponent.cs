@@ -32,6 +32,11 @@ namespace MRK
         public virtual void OnGUI() { }
 
         /// <summary>
+        /// Called every frame to draw the UI component without any constraints (no clipping).
+        /// </summary>
+        public virtual void OnUnconstrainedGUI() { }
+
+        /// <summary>
         /// Called every frame when the debug window is open.
         /// Useful for drawing debug information.
         /// </summary>

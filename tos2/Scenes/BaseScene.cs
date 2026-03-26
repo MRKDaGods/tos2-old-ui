@@ -62,6 +62,8 @@ namespace MRK.Scenes
                 GUI.BeginGroup(new Rect(component.Position, component.Size));
                 component.OnGUI();
                 GUI.EndGroup();
+
+                component.OnUnconstrainedGUI();
             }
         }
 

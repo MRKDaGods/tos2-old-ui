@@ -129,5 +129,15 @@ namespace MRK.Textures {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] WidgetAtlas {
+            get {
+                object obj = ResourceManager.GetObject("WidgetAtlas", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

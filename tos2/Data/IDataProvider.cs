@@ -1,14 +1,10 @@
+using System.Collections.Generic;
+
 namespace MRK.Data
 {
     public interface IDataProvider
     {
         IUser User { get; }
-    }
-
-    public interface IUser
-    {
-        string Username { get; }
-        int TownPoints { get; }
-        int CauldronTimeLeft { get; }
+        List<Friend> Friends { get; }
     }
 }

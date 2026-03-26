@@ -222,6 +222,54 @@ namespace MRK
             return clicked;
         }
 
+        public bool RenderMainMenuButton(
+            string content,
+            Font? font,
+            FontStyle fontStyle = FontStyle.Normal,
+            int fontSize = 18,
+            Color? color = null,
+            RectOffset? margin = null,
+            params GUILayoutOption[] options
+        )
+        {
+            _mainMenuButtonGuiStyle ??= new GUIStyle(GUI.skin.button)
+            {
+                font = UIManager.FontRuncible,
+                fontSize = 18,
+                fontStyle = FontStyle.Normal,
+                alignment = TextAnchor.MiddleCenter,
+                padding = new RectOffset(0, 0, 0, 0),
+                margin = new RectOffset(0, 0, 0, 0),
+                normal = { background = _mainMenuButtonTextures.Idle },
+                hover = { background = _mainMenuButtonTextures.Hover },
+                active = { background = _mainMenuButtonTextures.Down },
+            };
+
+            color ??= Color.white;
+            _mainMenuButtonGuiStyle.normal.textColor = color.Value;
+            _mainMenuButtonGuiStyle.hover.textColor = color.Value;
+            _mainMenuButtonGuiStyle.active.textColor = color.Value;
+            _mainMenuButtonGuiStyle.fontSize = fontSize;
+
+            var originalMargin = _mainMenuButtonGuiStyle.margin;
+            if (margin != null)
+                _mainMenuButtonGuiStyle.margin = margin;
+
+            // Null is a valid value here
+            var originalFont = _mainMenuButtonGuiStyle.font;
+            _mainMenuButtonGuiStyle.font = font;
+
+            var originalFontStyle = _mainMenuButtonGuiStyle.fontStyle;
+            _mainMenuButtonGuiStyle.fontStyle = fontStyle;
+
+            bool clicked = GUILayout.Button(content, _mainMenuButtonGuiStyle, options);
+
+            _mainMenuButtonGuiStyle.margin = originalMargin;
+            _mainMenuButtonGuiStyle.font = originalFont;
+            _mainMenuButtonGuiStyle.fontStyle = originalFontStyle;
+            return clicked;
+        }
+
         public bool RenderIconButton(
             Texture2D icon,
             string tooltip = "",

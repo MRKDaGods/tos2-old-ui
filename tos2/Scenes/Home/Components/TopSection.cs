@@ -52,7 +52,7 @@ namespace MRK.Scenes.Home.Components
                 contentPadding.left,
                 contentPadding.top,
                 Size.x - contentPadding.horizontal,
-                Size.y - SEPARATOR_HEIGHT
+                Size.y - sepRect.height
             );
 
             // Draw play button centered horizontally on screen

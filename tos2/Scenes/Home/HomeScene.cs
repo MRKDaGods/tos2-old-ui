@@ -10,6 +10,7 @@ namespace MRK.Scenes.Home
         private Texture2D? _homeBackgroundTex;
         private readonly LeftSection _leftSection;
         private readonly TopSection _topSection;
+        private readonly BottomSection _bottomSection;
 
         public HomeScene()
         {
@@ -18,6 +19,9 @@ namespace MRK.Scenes.Home
 
             _topSection = new TopSection(_leftSection);
             AddUIComponent(_topSection);
+
+            _bottomSection = new BottomSection(_leftSection);
+            AddUIComponent(_bottomSection);
         }
 
         public override IEnumerator OnSceneActivated()
